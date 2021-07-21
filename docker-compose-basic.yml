@@ -1,0 +1,70 @@
+version: '3.7'
+
+services:
+
+  redpanda-1:
+    command:
+      - redpanda
+      - start
+      - --smp
+      - '1'
+      - --reserve-memory
+      - 0M
+      - --check=false
+      - --config
+      - "/etc/kpow-rp/redpanda-1.yaml"
+    image: docker.vectorized.io/vectorized/redpanda:latest
+    container_name: redpanda-1
+    volumes:
+      - ${HOME}/config/basic:/etc/kpow-rp
+    ports:
+      - 8082:8082
+      - 9092:9092
+      - 29092:29092
+      - 33145:33145
+
+  redpanda-2:
+    command:
+      - redpanda
+      - start
+      - --smp
+      - '1'
+      - --reserve-memory
+      - 0M
+      - --check=false
+      - --config
+      - "/etc/kpow-rp/redpanda-2.yaml"
+    image: docker.vectorized.io/vectorized/redpanda:latest
+    container_name: redpanda-2
+    volumes:
+      - ${HOME}/config/basic:/etc/kpow-rp
+    depends_on: 
+      - redpanda-1
+    ports:
+      - 8083:8083
+      - 9093:9093
+      - 29093:29093
+      - 33146:33146
+
+  redpanda-3:
+    command:
+      - redpanda
+      - start
+      - --smp
+      - '1'
+      - --reserve-memory
+      - 0M
+      - --check=false
+      - --config
+      - "/etc/kpow-rp/redpanda-3.yaml"
+    image: docker.vectorized.io/vectorized/redpanda:latest
+    container_name: redpanda-3
+    volumes:
+      - ${HOME}/config/basic:/etc/kpow-rp
+    depends_on: 
+      - redpanda-1
+    ports:
+      - 8084:8084
+      - 9094:9094
+      - 29094:29094
+      - 33147:33147

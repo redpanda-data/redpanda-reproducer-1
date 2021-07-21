@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: org.rocksdb/rocksdbjni:5.18.4">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/rocksdb/rocksdbjni/5.18.4/rocksdbjni-5.18.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
