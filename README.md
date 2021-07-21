@@ -2,6 +2,8 @@
 
 Redpanda Version: v21.7.4 (current latest)
 
+Background: A [kPow](https://kpow.io) user found this issue when running kPow with a Redpanda cluster with modified broker configuration.
+
  **Report:**
 
  AdminClient/listConsumerGroup throws a TimeoutException
