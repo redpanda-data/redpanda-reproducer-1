@@ -2,7 +2,7 @@
 
 Redpanda Version: v21.7.4 (current latest)
 
-Background: A [kPow](https://kpow.io) user found this issue when running kPow with a Redpanda cluster with modified broker configuration.
+Background: encountered when running [kPow](https://kpow.io) with a Redpanda cluster with modified broker configuration.
 
  **Report:**
 
