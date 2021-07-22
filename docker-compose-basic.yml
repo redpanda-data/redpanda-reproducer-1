@@ -13,7 +13,7 @@ services:
       - --check=false
       - --config
       - "/etc/kpow-rp/redpanda-1.yaml"
-    image: docker.vectorized.io/vectorized/redpanda:latest
+    image: docker.vectorized.io/vectorized/redpanda:v21.7.4
     container_name: redpanda-1
     volumes:
       - ${HOME}/config/basic:/etc/kpow-rp
@@ -34,7 +34,7 @@ services:
       - --check=false
       - --config
       - "/etc/kpow-rp/redpanda-2.yaml"
-    image: docker.vectorized.io/vectorized/redpanda:latest
+    image: docker.vectorized.io/vectorized/redpanda:v21.7.4
     container_name: redpanda-2
     volumes:
       - ${HOME}/config/basic:/etc/kpow-rp
@@ -57,7 +57,7 @@ services:
       - --check=false
       - --config
       - "/etc/kpow-rp/redpanda-3.yaml"
-    image: docker.vectorized.io/vectorized/redpanda:latest
+    image: docker.vectorized.io/vectorized/redpanda:v21.7.4
     container_name: redpanda-3
     volumes:
       - ${HOME}/config/basic:/etc/kpow-rp
