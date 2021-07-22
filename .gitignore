@@ -2,3 +2,5 @@
 .lein-repl-history
 *.iml
 .docker
+target
+*.bk
