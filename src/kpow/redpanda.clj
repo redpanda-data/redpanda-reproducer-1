@@ -13,8 +13,7 @@
   (log/info "groups:" (-> client (.listConsumerGroups) (.all) (.get))))
 
 (defn create-topic
-  [client]
-  (-> (.createTopics client [(NewTopic. topic (Optional/of (int 12)) (Optional/of (short 3)))])
+  [client]  (-> (.createTopics client [(NewTopic. topic (Optional/of (int 12)) (Optional/of (short 3)))])
       (.all)
       (.get))
   (log/info "created kpow_topic"))
@@ -31,13 +30,14 @@
   (log/info "consumed" (.count (.poll consumer (Duration/ofMillis 2000))) "messages"))
 
 (defn show-bug
-  []
-  (let [client   (AdminClient/create {"bootstrap.servers" "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094"})
-        producer (KafkaProducer. {"bootstrap.servers" "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094"
+  [brokers]
+  (log/info "brokers: " brokers)
+  (let [client   (AdminClient/create {"bootstrap.servers" brokers})
+        producer (KafkaProducer. {"bootstrap.servers" brokers
                                   "key.serializer"    "org.apache.kafka.common.serialization.StringSerializer"
                                   "value.serializer"  "org.apache.kafka.common.serialization.StringSerializer"})
         consumer (KafkaConsumer. {"group.id"           "test-kpow-group"
-                                  "bootstrap.servers"  "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094"
+                                  "bootstrap.servers"  brokers
                                   "enable.auto.commit" "true"
                                   "auto.offset.reset"  "earliest"
                                   "key.deserializer"   "org.apache.kafka.common.serialization.StringDeserializer"
@@ -59,6 +59,6 @@
     (list-groups client)))
 
 (defn -main
-  [& _]
+  [& args]
   (log/info "kpow redpanda reproducer-1")
-  (show-bug))
+  (show-bug (nth args 0)))
